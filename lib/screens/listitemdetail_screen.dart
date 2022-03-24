@@ -22,12 +22,6 @@ class _ListItemDetailScreenState extends State<ListItemDetailScreen> {
     // TODO: implement initState
     super.initState();
     _readDB(widget.orderKey);
-
-    //   databaseRef.child(widget.orderKey).onValue.listen((event) {
-    //     setState(() {
-    //       databasejson = event.snapshot.value.toString();
-    //     });
-    //   });
   }
 
   final TextEditingController _employee1TEC = TextEditingController();
@@ -38,7 +32,6 @@ class _ListItemDetailScreenState extends State<ListItemDetailScreen> {
 
   final databaseRef = FirebaseDatabase.instance.ref().child('orderlist');
 
-  String databasejson = '';
   bool isShow = true;
 
   _readDB(String id) {
