@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
           // print(snapshot.value);
           final json = snapshot.value as Map<dynamic, dynamic>;
           final orders = Orders.fromJson(json);
-          // print(orders.toJson());
+
           return GestureDetector(
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(

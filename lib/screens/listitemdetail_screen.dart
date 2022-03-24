@@ -23,11 +23,11 @@ class _ListItemDetailScreenState extends State<ListItemDetailScreen> {
     super.initState();
     _readDB(widget.orderKey);
 
-    databaseRef.child(widget.orderKey).onValue.listen((event) {
-      setState(() {
-        databasejson = event.snapshot.value.toString();
-      });
-    });
+    //   databaseRef.child(widget.orderKey).onValue.listen((event) {
+    //     setState(() {
+    //       databasejson = event.snapshot.value.toString();
+    //     });
+    //   });
   }
 
   final TextEditingController _employee1TEC = TextEditingController();
@@ -46,10 +46,15 @@ class _ListItemDetailScreenState extends State<ListItemDetailScreen> {
       final snapShot = event.snapshot;
 
       setState(() {
-        final databasejson = snapShot.value.toString();
+        // final databasejson = snapShot.value.toString();
 
         final json = event.snapshot.value as Map<dynamic, dynamic>;
         orders = Orders.fromJson(json);
+        if (orders.totalCall == '') {
+          numOfCalls = 0;
+        } else {
+          numOfCalls = int.parse(orders.totalCall);
+        }
         isShow = false;
       });
     });
@@ -82,11 +87,6 @@ class _ListItemDetailScreenState extends State<ListItemDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.orderData.totalCall == '') {
-      numOfCalls = 0;
-    } else {
-      numOfCalls = int.parse(widget.orderData.totalCall);
-    }
     return Scaffold(
       backgroundColor: const Color(0xffE8F1FF),
       appBar: AppBar(
@@ -172,7 +172,6 @@ class _ListItemDetailScreenState extends State<ListItemDetailScreen> {
                           numOfCalls.toString(),
                         );
                         _readDB(widget.orderKey);
-                        Navigator.of(context).pop();
                       },
                     ),
                     const Divider(),
@@ -191,7 +190,6 @@ class _ListItemDetailScreenState extends State<ListItemDetailScreen> {
                           numOfCalls.toString(),
                         );
                         _readDB(widget.orderKey);
-                        Navigator.of(context).pop();
                       },
                     ),
                     const Divider(),
@@ -210,7 +208,6 @@ class _ListItemDetailScreenState extends State<ListItemDetailScreen> {
                           numOfCalls.toString(),
                         );
                         _readDB(widget.orderKey);
-                        Navigator.of(context).pop();
                       },
                     ),
                   ],
